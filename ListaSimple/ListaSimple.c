@@ -165,16 +165,17 @@ Alumno* GenerarAlumnoAleatorio() {
 }
 
 void LiberarLista(ListaSimple* lista) {
-    Nodo* actual = lista->head;
-    while (actual != NULL) {
-        Nodo* siguiente = actual->siguiente;
-        free(actual->nodoAlumno);  // Liberar la memoria del alumno
-        free(actual);              // Liberar la memoria del nodo
-        actual = siguiente;
-    }
-    lista->head = NULL;
-    lista->tail = NULL;
-    lista->size = 0;
+lista->curr=lista->head;
+while (lista->curr!=NULL)
+{
+    Nodo *temp = lista->curr;
+    lista->curr=lista->curr->siguiente;
+
+    free(temp->data);
+
+    free(temp);
+}
+
 }
 
 // Función para realizar altas de alumnos
